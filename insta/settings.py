@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-h=-r87!^)a+ie3y-g#ym099gbkpn#bq*#=!+*l=0e^cyn^k+w5
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'redsocial-django-8l0j.onrender.com']
+ALLOWED_HOSTS = ['redsocial-django-8l0j.onrender.com']
 
 
 # Application definition
