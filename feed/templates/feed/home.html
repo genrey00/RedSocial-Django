@@ -1,0 +1,41 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio - InstaFeed</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'feed/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <header>
+        <h1 class="header-title">Bienvenido a InstaFeed</h1>
+        <nav class="header-nav">
+            <ul class="header-nav-list">
+                <li><a href="{% url 'feed:home' %}">Inicio</a></li>
+                <li><a href="{% url 'feed:create_post' %}">Nuevo Post</a></li>
+                <li><a href="{% url 'feed:logout' %}">Cerrar sesión</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% if posts %}
+            {% for post in posts %}
+            <div class="post-container">
+                <article class="post">
+                    <h2 class="post-caption">{{ post.caption }}</h2>
+                    {% if post.image %}
+                        <img class="post-image" src="{{ post.image.url }}" alt="Post image">
+                    {% endif %}
+                    <small class="post-meta">Publicado por {{ post.author.username }} el {{ post.created_at|date:"d/m/Y H:i" }}</small>
+                </article>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No hay publicaciones aún.</p>
+        {% endif %}
+    </main>
+</body>
+</html>

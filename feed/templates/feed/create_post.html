@@ -1,0 +1,25 @@
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear Post - InstaFeed</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'feed/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="container">
+    <main>
+        <h1 class="header-post">Crear Nuevo Post</h1>
+        <form class="create-post-form" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button class="btn btn-primary" type="submit">Publicar</button>
+        </form>
+    </main>
+    </div>
+</body>
+</html>
+{% endblock %}

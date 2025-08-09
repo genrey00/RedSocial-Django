@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="post-detail">
+    <h2>{{ post.title }}</h2>
+    <p>Publicado por <strong>{{ post.author.username }}</strong> el {{ post.created_at|date:"d M Y H:i" }}</p>
+    <div class="post-image">
+        {% if post.image %}
+            <img src="{{ post.image.url }}" alt="Imagen del post" style="max-width: 100%;">
+        {% endif %}
+    </div>
+    <div class="post-content">
+        <p>{{ post.content }}</p>
+    </div>
+    <hr>
+    <h4>Comentarios</h4>
+    <ul>
+        {% for comment in post.comments.all %}
+            <li>
+                <strong>{{ comment.author.username }}</strong>:
+                {{ comment.text }} <em>({{ comment.created_at|date:"d M Y H:i" }})</em>
+            </li>
+        {% empty %}
+            <li>No hay comentarios aún.</li>
+        {% endfor %}
+    </ul>
+    <hr>
+    <h4>Agregar un comentario</h4>
+    <form method="post">
+        {% csrf_token %}
+        {{ comment_form.as_p }}
+        <button type="submit">Comentar</button>
+    </form>
+</div>
+{% endblock %}

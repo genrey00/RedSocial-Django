@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}InstaFeed{% endblock %}</title>
+</head>
+<body>
+    <header class="site-header">
+         {% if user.is_authenticated %}
+        <h1 class="site-title">Bienvenido a InstaFeed</h1>
+        <nav class="site-nav">
+            <ul class="site-nav-list">
+                <li><a href="{% url 'feed:home' %}">Inicio</a></li>
+                <li><a href="{% url 'feed:explore' %}">Explorar</a></li>
+                <li><a href="{% url 'feed:logout' %}">Cerrar sesión</a></li>
+            </ul>
+        </nav>
+        {% else %}
+        <nav class="site-nav">
+            <ul class="site-nav-list">
+                <li><a href="{% url 'feed:login' %}">Iniciar sesión</a></li>
+                <li><a href="{% url 'feed:register' %}">Registrarse</a></li>
+            </ul>
+        </nav>
+        {% endif %}
+    </header>
+    <main>
+        {% block content %}
+        <!-- Contenido de la página -->
+        {% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2024 InstaFeed</p>
+    </footer>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
